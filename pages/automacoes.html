@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XY Tools | Automações</title>
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+  <meta name="description" content="Modelos de automações para atendimento, logística e rotina do seller.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body data-page="automacoes">
+
+<div class="splash" id="splash" aria-live="polite">
+  <div class="splash-glow"></div>
+  <div class="splash-logo huge">XY</div>
+  <div class="splash-bar pulse"><span></span></div>
+</div>
+
+<div class="bg-orbs">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
+
+<header class="topbar glass">
+  <div class="brand">
+    <div class="brand-text">
+      <span class="brand-label">PROJECT · FREE · EVOLVING</span>
+      <h1>XY Tools</h1>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="../index.html" data-nav="home">Home</a>
+    <a href="ferramentas.html" data-nav="ferramentas">Ferramentas</a>
+    <a href="integracoes.html" data-nav="integracoes">Integrações</a>
+    <a href="login.html" class="pill-link" data-nav="login">Login</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <h2>Automação e alertas</h2>
+      <p>Crie gatilhos no navegador: disparos de pedidos, logística e campanhas.</p>
+    </div>
+    <div class="pages-grid">
+      <article class="page-card tilt">
+        <div class="page-top"><span class="pill success">Pedidos</span><span class="page-arrow">→</span></div>
+        <h3>Webhook de pedido</h3>
+        <p>Alerta instantâneo a cada pedido novo, com prioridade e estoque.</p>
+        <ul class="panel-list">
+          <li>Enviar para Slack/Email.</li>
+          <li>Priorizar promessa curta.</li>
+          <li>Flag de estoque crítico.</li>
+        </ul>
+      </article>
+      <article class="page-card tilt">
+        <div class="page-top"><span class="pill info">Logística</span><span class="page-arrow">→</span></div>
+        <h3>Alerta de coleta</h3>
+        <p>Notifique 2h antes do corte e quando etiqueta atrasar.</p>
+        <ul class="panel-list">
+          <li>SLA de despacho monitorado.</li>
+          <li>Eventos de rastreio básicos.</li>
+          <li>Checklist de expedição.</li>
+        </ul>
+      </article>
+      <article class="page-card tilt">
+        <div class="page-top"><span class="pill warn">Campanhas</span><span class="page-arrow">→</span></div>
+        <h3>Disparo de cupons</h3>
+        <p>Abrir/vencer cupons e bundles automaticamente.</p>
+        <ul class="panel-list">
+          <li>Janelas por dia/turno.</li>
+          <li>Combos de SKU correlato.</li>
+          <li>Logs simples por lote.</li>
+        </ul>
+      </article>
+      <article class="page-card tilt">
+        <div class="page-top"><span class="pill accent">Conteúdo</span><span class="page-arrow">→</span></div>
+        <h3>Templates automáticos</h3>
+        <p>Respostas rápidas para chat e pós-venda.</p>
+        <ul class="panel-list">
+          <li>Frete e prazo.</li>
+          <li>Troca e devolução.</li>
+          <li>Upsell de SKU relacionado.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <h2>Montar automação</h2>
+      <p>Selecione evento, canal e mensagem. Tudo roda no navegador.</p>
+    </div>
+    <div class="form-card tilt">
+      <form id="auto-form" class="form-grid">
+        <div class="input-row">
+          <div class="field">
+            <label>Evento</label>
+            <select name="evento">
+              <option value="pedido_novo">Pedido novo</option>
+              <option value="etiqueta_atrasada">Etiqueta atrasada</option>
+              <option value="cupom_expirando">Cupom expirando</option>
+              <option value="estoque_baixo">Estoque baixo</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Canal</label>
+            <select name="canal">
+              <option value="slack">Slack</option>
+              <option value="email">Email</option>
+              <option value="webhook">Webhook</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Mensagem</label>
+          <textarea name="mensagem" placeholder="Texto que será enviado"></textarea>
+        </div>
+        <button class="btn primary" type="submit">Gerar snippet</button>
+      </form>
+      <div id="auto-log"></div>
+    </div>
+  </section>
+
+  <section class="section grid duo" data-reveal>
+    <div class="panel">
+      <div class="panel-head"><span class="pill success">Scripts</span><h3>Configuração rápida</h3></div>
+      <p>Use os fluxos como roteiro: conecte webhooks, configure mensagens e valide os gatilhos.</p>
+      <div class="cta-actions">
+        <a class="btn primary" href="integracoes.html">Ir para integrações</a>
+        <a class="btn ghost" href="playbook.html">Abrir playbook</a>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="pill warn">Identidade</span><h3>Visual hospedado</h3></div>
+      <p>Mesma identidade XY: orbes, gradientes e animações leves em todas as páginas.</p>
+      <ul class="panel-list">
+        <li>Overlay suave.</li>
+        <li>Transições rápidas.</li>
+        <li>UI consistente.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-cols">
+    <div>
+      <h3>XY Tools</h3>
+      <p>Suite moderna de ferramentas e playbooks para Shopee.</p>
+    </div>
+    <div>
+      <h3>Páginas</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="ferramentas.html">Ferramentas</a></li>
+        <li><a href="integracoes.html">Integrações</a></li>
+        <li><a href="playbook.html">Playbook</a></li>
+        <li><a href="fornecedores.html">Fornecedores</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Ferramentas</h3>
+      <ul>
+        <li><a href="tools/calculadora.html">Calculadora</a></li>
+        <li><a href="tools/painel-analise.html">Painel</a></li>
+        <li><a href="tools/etiquetas.html">Etiquetas</a></li>
+        <li><a href="ferramentas.html#seo">SEO</a></li>
+        <li><a href="ferramentas.html#cupons">Cupons</a></li>
+        <li><a href="ferramentas.html#rastreio">Rastreio</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="copy">© 2025 XY Tools · criado por Iury.</p>
+<div class="footer-powered">Powered by <strong>XY Works</strong></div>
+</footer>
+
+<script src="../js/index.js"></script>
+</body>
+</html>

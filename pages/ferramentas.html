@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XY Tools | Ferramentas</title>
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+  <meta name="description" content="Central de ferramentas do XY Tools: calculadora de margem, painel de análise e etiquetas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body data-page="ferramentas">
+
+<div class="splash" id="splash" aria-live="polite">
+  <div class="splash-glow"></div>
+  <div class="splash-logo huge">XY</div>
+  <div class="splash-bar pulse"><span></span></div>
+</div>
+
+<div class="bg-orbs">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
+
+<header class="topbar glass">
+  <div class="brand">
+    <div class="brand-text">
+      <span class="brand-label">PROJECT · FREE · EVOLVING</span>
+      <h1>XY Tools</h1>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="../index.html" data-nav="home">Home</a>
+    <a href="ferramentas.html" data-nav="ferramentas">Ferramentas</a>
+    <a href="integracoes.html" data-nav="integracoes">Integrações</a>
+    <a href="login.html" class="pill-link" data-nav="login">Login</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <h2>Suite de operacao e vendas</h2>
+      <p>Ferramentas premium para logistica e marketplace. Visual limpo, interacoes rapidas.</p>
+    </div>
+    <div class="tools-hero">
+      <div>
+        <h3>Fluxos principais</h3>
+        <p>Calcule margem, gere etiquetas e analise XLSX em poucos cliques.</p>
+        <div class="quick-actions">
+          <a href="tools/calculadora.html" class="pill accent">Margem</a>
+          <a href="tools/etiquetas.html" class="pill accent">Etiquetas</a>
+          <a href="tools/painel-analise.html" class="pill accent">Painel XLSX</a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <span>Compativel com Shopee, Mercado Livre e Melhor Envio.</span>
+        <span>Saida em 10x15 ou A4 com recorte ajustavel.</span>
+      </div>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card tilt">
+        <div class="tool-icon"><span>🧮</span></div>
+        <h3>Calculadora de Margem</h3>
+        <p>Taxas 14%/20%, custos extras e margem final.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">Taxas auto</span>
+          <span class="tool-tag">Markup</span>
+        </div>
+        <a class="tool-cta" href="tools/calculadora.html">Abrir</a>
+      </div>
+      <div class="tool-card tilt">
+        <div class="tool-icon"><span>📊</span></div>
+        <h3>Painel de Vendas</h3>
+        <p>Upload de XLSX com graficos e top SKUs.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">Chart.js</span>
+          <span class="tool-tag">Unidades</span>
+        </div>
+        <a class="tool-cta" href="tools/painel-analise.html">Abrir</a>
+      </div>
+      <div class="tool-card tilt">
+        <div class="tool-icon"><span>🏷️</span></div>
+        <h3>Etiquetas &amp; Impressao</h3>
+        <p>Converta PDFs logisticos e imprima em 10x15 ou A4.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">pdf.js</span>
+          <span class="tool-tag">Auto corte</span>
+        </div>
+        <a class="tool-cta" href="tools/etiquetas.html">Abrir</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <h2>Ferramentas interativas</h2>
+      <p>Ajuste SEO, cupons, rastreio, preco, frete e tags aqui mesmo.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="form-card tilt">
+        <h3 id="seo">SEO & Keywords</h3>
+        <form id="seo-form" class="form-grid">
+          <div class="field">
+            <label for="seo-title">Titulo</label>
+            <input id="seo-title" name="seo-title" type="text" placeholder="Ex: Tenis esportivo leve para corrida">
+          </div>
+          <div class="field">
+            <label for="seo-desc">Descricao</label>
+            <textarea id="seo-desc" name="seo-desc" placeholder="Beneficios, uso, garantia, entrega rapida"></textarea>
+          </div>
+          <div class="field">
+            <label for="seo-tags">Tags (separadas por virgula)</label>
+            <input id="seo-tags" name="seo-tags" type="text" placeholder="tenis, corrida, leve, amortecimento">
+          </div>
+          <button class="btn primary" type="submit">Gerar checklist</button>
+        </form>
+        <div id="seo-output" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3 id="cupons">Cupons e bundles</h3>
+        <form id="coupon-form" class="form-grid">
+          <div class="input-row">
+            <div class="field">
+              <label for="cupom">Nome do cupom</label>
+              <input id="cupom" name="cupom" type="text" placeholder="FRETEGRATIS" required>
+            </div>
+            <div class="field">
+              <label for="desconto">Desconto %</label>
+              <input id="desconto" name="desconto" type="number" min="1" max="90" value="10">
+            </div>
+            <div class="field">
+              <label for="minimo">Minimo (R$)</label>
+              <input id="minimo" name="minimo" type="number" min="0" step="1" value="50">
+            </div>
+          </div>
+          <div class="field">
+            <label for="validade">Validade</label>
+            <input id="validade" name="validade" type="text" placeholder="7 dias, fim de semana...">
+          </div>
+          <button class="btn primary" type="submit">Gerar cupom</button>
+        </form>
+        <div id="coupon-preview" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3 id="rastreio">Rastreamento rapido</h3>
+        <form id="track-form" class="form-grid">
+          <div class="field">
+            <label for="codigo">Codigo</label>
+            <input id="codigo" name="codigo" type="text" placeholder="XY123456" required>
+          </div>
+          <button class="btn primary" type="submit">Rastrear</button>
+        </form>
+        <div id="track-result" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3>Comparador de preco</h3>
+        <form id="price-form" class="form-grid">
+          <div class="input-row">
+            <div class="field">
+              <label for="custo">Custo R$</label>
+              <input id="custo" name="custo" type="number" step="0.01" value="20">
+            </div>
+            <div class="field">
+              <label for="conc">Concorrencia R$</label>
+              <input id="conc" name="conc" type="number" step="0.01" value="39.9">
+            </div>
+            <div class="field">
+              <label for="margem">Margem %</label>
+              <input id="margem" name="margem" type="number" step="1" value="25">
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Calcular preco ideal</button>
+        </form>
+        <div id="price-output" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3>Frete estimado</h3>
+        <form id="frete-form" class="form-grid">
+          <div class="input-row">
+            <div class="field">
+              <label for="peso">Peso (kg)</label>
+              <input id="peso" name="peso" type="number" step="0.1" value="0.5">
+            </div>
+            <div class="field">
+              <label for="prazo">Prazo</label>
+              <input id="prazo" name="prazo" type="text" placeholder="2 dias">
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Calcular frete</button>
+        </form>
+        <div id="frete-output" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3>Conversor USD -> BRL</h3>
+        <form id="fx-form" class="form-grid">
+          <div class="field">
+            <label for="usd">Valor em USD</label>
+            <input id="usd" name="usd" type="number" step="0.01" value="10">
+          </div>
+          <button class="btn primary" type="submit">Converter</button>
+        </form>
+        <div id="fx-output" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3>Gerador de tags</h3>
+        <form id="tags-form" class="form-grid">
+          <div class="field">
+            <label for="produto">Palavras do produto</label>
+            <input id="produto" name="produto" type="text" placeholder="Tenis leve amortecimento corrida" required>
+          </div>
+          <button class="btn primary" type="submit">Gerar tags</button>
+        </form>
+        <div id="tags-output" class="output-card"></div>
+      </div>
+
+      <div class="form-card tilt">
+        <h3 id="planner">Planner de campanhas</h3>
+        <form id="planner-form" class="form-grid">
+          <div class="input-row">
+            <div class="field">
+              <label>Turno</label>
+              <select name="turno">
+                <option>Manha</option>
+                <option>Tarde</option>
+                <option>Noite</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Foco</label>
+              <input name="foco" type="text" placeholder="Campanha relampago">
+            </div>
+          </div>
+          <div class="field">
+            <label>Acao</label>
+            <textarea name="acao" placeholder="Subir bundle, revisar preco, ativar cupom..."></textarea>
+          </div>
+          <button class="btn primary" type="submit">Montar plano</button>
+        </form>
+        <div id="planner-output" class="output-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section grid duo" data-reveal>
+    <div class="panel">
+      <div class="panel-head"><span class="pill warn">Operacao</span><h3>Pacote premium</h3></div>
+      <p>Ferramentas inspiradas em opcoes pagas do mercado, entregues em UI limpa e animada.</p>
+      <ul class="panel-list">
+        <li>Cards com hover leve e orbes no fundo.</li>
+        <li>Separacao clara por blocos.</li>
+        <li>Conteudo enxuto e direto.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="pill success">Iury</span><h3>Assinatura</h3></div>
+      <p>XY Tools criado por Iury para sellers e operacoes, com estetica dark vibrante e performance web-first.</p>
+      <ul class="panel-list">
+        <li>Texto em portugues, direto.</li>
+        <li>Aberto para novas features.</li>
+        <li>Visual consistente em toda a suite.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-cols">
+    <div>
+      <h3>XY Tools</h3>
+      <p>Suite moderna de ferramentas e playbooks.</p>
+    </div>
+    <div>
+      <h3>Paginas</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="integracoes.html">Integracoes</a></li>
+        <li><a href="automacoes.html">Automacoes</a></li>
+        <li><a href="playbook.html">Playbook</a></li>
+        <li><a href="fornecedores.html">Fornecedores</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Ferramentas</h3>
+      <ul>
+        <li><a href="tools/calculadora.html">Calculadora</a></li>
+        <li><a href="tools/painel-analise.html">Painel</a></li>
+        <li><a href="tools/etiquetas.html">Etiquetas</a></li>
+        <li><a href="ferramentas.html#seo">SEO</a></li>
+        <li><a href="ferramentas.html#cupons">Cupons</a></li>
+        <li><a href="ferramentas.html#rastreio">Rastreio</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="copy">2025 XY Tools - criado por Iury.</p>
+<div class="footer-powered">Powered by <strong>XY Works</strong></div>
+</footer>
+
+<script src="../js/index.js"></script>
+</body>
+</html>

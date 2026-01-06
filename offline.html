@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XY Tools | Offline</title>
+  <meta name="description" content="Você está offline. Algumas páginas ainda funcionam se já estiverem em cache." />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="./assets/favicon.png" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body data-page="offline">
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="brand-text">
+        <span class="brand-label">PROJECT · FREE · EVOLVING</span>
+        <h1>XY Tools</h1>
+      <p class="muted">Powered by <strong>XY Works</strong></p>
+      </div>
+    </div>
+    <nav class="nav-links">
+    <a href="index.html" data-nav="home">Home</a>
+    <a href="pages/ferramentas.html" data-nav="ferramentas">Ferramentas</a>
+    <a href="pages/integracoes.html" data-nav="integracoes">Integrações</a>
+    <a href="pages/login.html" class="pill-link" data-nav="login">Login</a>
+  </nav>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="card glass" style="max-width:720px;margin:0 auto;">
+        <h2>Sem internet</h2>
+        <p>Você está offline agora. Se você já abriu alguma ferramenta antes, ela pode continuar funcionando.</p>
+        <div class="grid" style="grid-template-columns:1fr;gap:12px;">
+          <a class="btn primary" href="./pages/ferramentas.html">Abrir Ferramentas</a>
+          <button class="btn ghost" id="try-reload">Tentar novamente</button>
+        </div>
+        <p class="muted" style="margin-top:14px;">Dica: instale o app (PWA) para abrir mais rápido e usar cache.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('try-reload')?.addEventListener('click', () => location.reload());
+  </script>
+</body>
+</html>

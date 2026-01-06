@@ -1,0 +1,236 @@
+:root {
+  --bg-main: #0B1220;
+  --bg-card: #0F1A2E;
+  --bg-elev: #17223A;
+
+  --accent: #D4AF37;         /* gold */
+  --accent-2: #F5C15B;       /* warm gold highlight */
+
+  --text: #F9FAFB;
+  --text-muted: #B3BDCC;
+  --text-main: var(--text);
+  --text-soft: var(--text-muted);
+  --accent-soft: rgba(212, 175, 55, 0.75);
+
+
+  --border: rgba(255,255,255,0.10);
+  --border-soft: rgba(255,255,255,0.06);
+
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+  --shadow-strong: 0 20px 60px rgba(0,0,0,0.55);
+
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.page {
+  max-width: 1180px;
+  margin: 28px auto 60px;
+  padding: 0 22px;
+}
+
+.box {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 22px 22px 26px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-strong);
+  position: relative;
+  overflow: hidden;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(140deg, rgba(212, 175, 55, 0.12), transparent 44%, rgba(102, 178, 255, 0.12));
+  opacity: 0.8;
+}
+
+.box > * {
+  position: relative;
+  z-index: 1;
+}
+
+.box-header h1,
+.box-header h2 {
+  margin: 6px 0 6px;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+}
+
+.box-header p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.badge-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.pill.success {
+  border-color: rgba(77, 255, 193, 0.32);
+  color: #9bfbd7;
+}
+
+.pill.muted {
+  color: var(--text-muted);
+}
+
+.pill.small {
+  padding: 4px 10px;
+  font-size: 0.7rem;
+}
+
+.upload-area {
+  margin-top: 14px;
+}
+
+.upload-area input[type="file"] {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.resumo {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.resumo div {
+  background: #020617;
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+}
+
+.resumo span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.resumo strong {
+  font-size: 1.05rem;
+}
+
+.resultados {
+  margin-top: 20px;
+}
+
+.painels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.panel-chart {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 14px 14px 6px;
+  border: 1px solid var(--border-soft);
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.panel-head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.top-lista {
+  margin-top: 16px;
+}
+
+.tabela-wrapper {
+  margin-top: 6px;
+  max-height: 400px;
+  overflow: auto;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-muted);
+  position: sticky;
+  top: 0;
+  background: rgba(10, 14, 26, 0.98);
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 720px) {
+  .box {
+    padding: 18px;
+  }
+}
+
+
+/* XY Tools small details */
+.brand-sub{
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.brand-sub strong{ color: var(--text); font-weight: 600; }
+.footer-powered{
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+a{ color: inherit; }
+a:hover{ color: var(--text); }

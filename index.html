@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XY Tools | Powered by XY Works</title>
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+  <meta name="description" content="XY Tools — um projeto em evolução dentro da XY Works. Ferramentas free para operação de seller, com visual premium e foco em execução." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body data-page="home">
+
+<div class="splash" id="splash" aria-live="polite">
+  <div class="splash-glow"></div>
+  <div class="splash-logo huge">XY</div>
+  <div class="splash-bar pulse"><span></span></div>
+</div>
+
+<div class="bg-orbs">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
+
+<header class="topbar glass">
+  <div class="brand">
+    <div class="brand-text">
+      <span class="brand-label">PROJECT · FREE · EVOLVING</span>
+      <h1>XY Tools</h1>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html" data-nav="home">Home</a>
+    <a href="pages/ferramentas.html" data-nav="ferramentas">Ferramentas</a>
+    <a href="pages/integracoes.html" data-nav="integracoes">Integrações</a>
+    <a href="pages/login.html" class="pill-link" data-nav="login">Login</a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <section class="hero" data-reveal>
+    <div class="hero-text">
+      <div class="badge"><span class="pulse-dot"></span> PROJECT · FREE · EVOLVING</div>
+      <h2>XY Tools</h2>
+      <p class="hero-sub">Um projeto em evolução dentro da <strong>XY Works</strong>. Algumas ferramentas nascem aqui. Outras evoluem.</p>
+      <div class="hero-actions">
+        <a href="pages/ferramentas.html" class="btn primary">Abrir ferramentas</a>
+        <a href="pages/tools/etiquetas.html" class="btn ghost">Gerar etiquetas</a>
+      </div>
+      <div class="hero-metrics">
+        <div>
+          <strong>+10 ferramentas</strong>
+          <span>Calculadora, painel, etiquetas, SEO, cupons</span>
+        </div>
+        <div>
+          <strong>Fluxos prontos</strong>
+          <span>Integrações, automações, playbook</span>
+        </div>
+        <div>
+          <strong>Web-first</strong>
+          <span>Animações e UI profissional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-media tilt">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1100&q=70" alt="Dashboard e código">
+      <div class="hero-badge"><span class="pulse-dot"></span> Front + Painel Shopee</div>
+    </div>
+  </section>
+
+  <section id="ferramentas" class="section tools" data-reveal>
+    <header class="section-header">
+      <h2>Ferramentas rápidas</h2>
+      <p>Selecione e abra direto no navegador, sem fricção.</p>
+    </header>
+
+    <div class="tools-grid">
+      <div class="tool-card tilt" onclick="location.href='pages/tools/calculadora.html'">
+        <div class="tool-icon"><span>🧮</span></div>
+        <h3>Calculadora de margem</h3>
+        <p>Preço de venda, taxas e custos extras.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">Taxas 14%/20%</span>
+          <span class="tool-tag">Taxa fixa auto</span>
+        </div>
+        <a class="tool-cta" href="pages/tools/calculadora.html" onclick="event.stopPropagation();">Abrir calculadora</a>
+      </div>
+
+      <div class="tool-card tilt" onclick="location.href='pages/tools/painel-analise.html'">
+        <div class="tool-icon"><span>📊</span></div>
+        <h3>Painel de vendas</h3>
+        <p>Suba XLSX e veja faturamento e top produtos.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">Chart.js</span>
+          <span class="tool-tag">Top SKUs</span>
+        </div>
+        <a class="tool-cta" href="pages/tools/painel-analise.html" onclick="event.stopPropagation();">Ver painel</a>
+      </div>
+
+      <div class="tool-card tilt" onclick="location.href='pages/tools/etiquetas.html'">
+        <div class="tool-icon"><span>🎟️</span></div>
+        <h3>Etiquetas &amp; Impressao</h3>
+        <p>Converta PDFs e imprima no formato correto.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">pdf.js</span>
+          <span class="tool-tag">Logistica</span>
+        </div>
+        <a class="tool-cta" href="pages/tools/etiquetas.html" onclick="event.stopPropagation();">Gerar etiquetas</a>
+      </div>
+
+      <div class="tool-card tilt" onclick="location.href='pages/ferramentas.html#seo'">
+        <div class="tool-icon"><span>🔍</span></div>
+        <h3>SEO e keywords</h3>
+        <p>Checklist de títulos e tags.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">SEO</span>
+          <span class="tool-tag">Shopee</span>
+        </div>
+        <a class="tool-cta" href="pages/ferramentas.html#seo" onclick="event.stopPropagation();">Abrir SEO</a>
+      </div>
+
+      <div class="tool-card tilt" onclick="location.href='pages/ferramentas.html#cupons'">
+        <div class="tool-icon"><span>🎯</span></div>
+        <h3>Cupons e bundles</h3>
+        <p>Monte ofertas com combos e vouchers.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">Campanha</span>
+          <span class="tool-tag">Bundles</span>
+        </div>
+        <a class="tool-cta" href="pages/ferramentas.html#cupons" onclick="event.stopPropagation();">Configurar</a>
+      </div>
+
+      <div class="tool-card tilt" onclick="location.href='pages/ferramentas.html#rastreio'">
+        <div class="tool-icon"><span>📦</span></div>
+        <h3>Rastreamento rápido</h3>
+        <p>Acompanhe envios e SLA.</p>
+        <div class="tool-meta">
+          <span class="tool-tag">Envio</span>
+          <span class="tool-tag">SLA</span>
+        </div>
+        <a class="tool-cta" href="pages/ferramentas.html#rastreio" onclick="event.stopPropagation();">Rastrear</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pages" data-reveal>
+    <header class="section-header">
+      <h2>Páginas dedicadas</h2>
+      <p>Fluxos completos para operar: integrações, automações, playbooks e fornecedores.</p>
+    </header>
+    <div class="pages-grid">
+      <article class="page-card tilt" onclick="location.href='pages/integracoes.html'">
+        <div class="page-top">
+          <span class="pill success">Integrações</span>
+          <span class="page-arrow">→</span>
+        </div>
+        <h3>API e catálogo</h3>
+        <p>Tokens, refresh, estoque e preço em lote.</p>
+        <a href="pages/integracoes.html" class="tool-cta" onclick="event.stopPropagation();">Abrir integrações</a>
+      </article>
+      <article class="page-card tilt" onclick="location.href='pages/automacoes.html'">
+        <div class="page-top">
+          <span class="pill info">Automações</span>
+          <span class="page-arrow">→</span>
+        </div>
+        <h3>Alertas e scripts</h3>
+        <p>Webhooks, disparos e rotina de campanhas.</p>
+        <a href="pages/automacoes.html" class="tool-cta" onclick="event.stopPropagation();">Abrir automações</a>
+      </article>
+      <article class="page-card tilt" onclick="location.href='pages/playbook.html'">
+        <div class="page-top">
+          <span class="pill info">Playbook</span>
+          <span class="page-arrow">→</span>
+        </div>
+        <h3>Campanhas e rotina</h3>
+        <p>Roteiros por turno e agenda semanal.</p>
+        <a href="pages/playbook.html" class="tool-cta" onclick="event.stopPropagation();">Abrir playbook</a>
+      </article>
+      <article class="page-card tilt" onclick="location.href='pages/fornecedores.html'">
+        <div class="page-top">
+          <span class="pill accent">Fornecedor</span>
+          <span class="page-arrow">→</span>
+        </div>
+        <h3>Hub B2B</h3>
+        <p>Lead time, MOQ, custo total e reposição.</p>
+        <a href="pages/fornecedores.html" class="tool-cta" onclick="event.stopPropagation();">Abrir fornecedor</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section grid duo" data-reveal>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="pill success">Feito por Iury</span>
+        <h3>Design e entrega</h3>
+      </div>
+      <p>Projeto criado por Iury para operação Shopee: textos diretos, dark vibrante e navegação clara.</p>
+      <ul class="panel-list">
+        <li>Visual profissional e enxuto.</li>
+        <li>Páginas dedicadas por fluxo.</li>
+        <li>Pronto para evoluir com novas features.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section cta" data-reveal>
+    <div class="cta-card">
+      <div>
+        <p class="hero-tag">Pronto para operar</p>
+        <h3>Abra as ferramentas e execute agora.</h3>
+        <p>Stack web com navegação rápida e experiência consistente.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn primary" href="pages/ferramentas.html">Ir para ferramentas</a>
+        <a class="btn ghost" href="pages/automacoes.html">Ver automações</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-cols">
+    <div>
+      <h3>XY Tools</h3>
+      <p>Ferramentas web para operação Shopee.</p>
+    </div>
+
+    <div>
+      <h3>Páginas</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pages/ferramentas.html">Ferramentas</a></li>
+        <li><a href="pages/integracoes.html">Integrações</a></li>
+        <li><a href="pages/automacoes.html">Automações</a></li>
+        <li><a href="pages/playbook.html">Playbook</a></li>
+        <li><a href="pages/fornecedores.html">Fornecedores</a></li>
+        <li><a href="pages/login.html">Login</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Ferramentas</h3>
+      <ul>
+        <li><a href="pages/tools/calculadora.html">Calculadora</a></li>
+        <li><a href="pages/tools/painel-analise.html">Painel</a></li>
+        <li><a href="pages/tools/etiquetas.html">Etiquetas</a></li>
+        <li><a href="pages/ferramentas.html#seo">SEO</a></li>
+        <li><a href="pages/ferramentas.html#cupons">Cupons</a></li>
+        <li><a href="pages/ferramentas.html#rastreio">Rastreio</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="copy">© 2025 XY Tools · criado por Iury.</p>
+</footer>
+
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>XY Tools | Painel de Vendas</title>
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="manifest" href="../../manifest.json">
+  <link rel="icon" href="../../assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+  <meta name="description" content="Painel de análise: suba planilha XLSX e veja gráficos e rankings.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/index.css">
+  <link rel="stylesheet" href="../../css/painel-analise.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="tools-painel">
+
+<div class="splash" id="splash" aria-live="polite">
+  <div class="splash-glow"></div>
+  <div class="splash-logo huge">XY</div>
+  <div class="splash-bar pulse"><span></span></div>
+</div>
+
+<div class="bg-orbs">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
+
+<header class="topbar glass">
+  <div class="brand">
+    <div class="brand-text">
+      <span class="brand-label">PROJECT · FREE · EVOLVING</span>
+      <h1>Painel de Vendas</h1>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="../../index.html" data-nav="home">Home</a>
+    <a href="../ferramentas.html" data-nav="ferramentas">Ferramentas</a>
+    <a href="../integracoes.html" data-nav="integracoes">Integrações</a>
+    <a href="../login.html" class="pill-link" data-nav="login">Login</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="box">
+    <header class="box-header">
+      <div class="badge-row">
+        <span class="pill success">Shopee</span>
+        <span class="pill muted" id="status-pill">Aguardando arquivo</span>
+      </div>
+      <h1>Suba o relatorio da Shopee (XLSX)</h1>
+      <p>Use os relatorios de produtos ou pedidos para ver faturamento, unidades e top SKUs.</p>
+    </header>
+
+    <div class="upload-area">
+      <input type="file" id="fileInput" accept=".xlsx,.xls">
+      <p class="hint">Dica: "Visao geral do produto" ou "ParentSkuDetail".</p>
+    </div>
+
+    <div class="resumo" id="resumoGeral" hidden>
+      <div>
+        <span>Faturamento total</span>
+        <strong id="fatTotal">R$ 0,00</strong>
+      </div>
+      <div>
+        <span>Unidades vendidas</span>
+        <strong id="unidades">0</strong>
+      </div>
+      <div>
+        <span>Ticket medio</span>
+        <strong id="ticket">R$ 0,00</strong>
+      </div>
+      <div>
+        <span>SKUs unicos</span>
+        <strong id="skus">0</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="box resultados">
+    <div class="grid painels">
+      <div class="panel-chart">
+        <div class="panel-head">
+          <h3>Top faturamento</h3>
+          <span class="pill muted small">Top 10</span>
+        </div>
+        <canvas id="chartFaturamento"></canvas>
+      </div>
+      <div class="panel-chart">
+        <div class="panel-head">
+          <h3>Top unidades</h3>
+          <span class="pill muted small">Top 10</span>
+        </div>
+        <canvas id="chartUnidades"></canvas>
+      </div>
+    </div>
+
+    <div class="top-lista">
+      <div class="panel-head">
+        <h3>Top produtos (ate 50)</h3>
+        <span class="pill muted small" id="totalLinhas">0 linhas</span>
+      </div>
+      <div class="tabela-wrapper">
+        <table id="tabelaProdutos">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Unidades</th>
+              <th>Faturamento</th>
+              <th>Ticket</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-cols">
+    <div>
+      <h3>XY Tools</h3>
+      <p>Suite moderna de ferramentas e playbooks para Shopee.</p>
+    </div>
+    <div>
+      <h3>Paginas</h3>
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../ferramentas.html">Ferramentas</a></li>
+        <li><a href="../integracoes.html">Integracoes</a></li>
+        <li><a href="../automacoes.html">Automacoes</a></li>
+        <li><a href="../playbook.html">Playbook</a></li>
+        <li><a href="../fornecedores.html">Fornecedores</a></li>
+        <li><a href="../login.html">Login</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="copy">2025 XY Tools - painel pronto.</p>
+<div class="footer-powered">Powered by <strong>XY Works</strong></div>
+</footer>
+
+<script src="../../js/index.js"></script>
+<script src="../../js/painel-analise.js"></script>
+</body>
+</html>

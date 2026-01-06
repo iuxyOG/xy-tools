@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XY Tools | Login (opcional)</title>
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+  <meta name="description" content="Login opcional para personalizar sua experiência e salvar acesso no dispositivo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body data-page="login">
+
+<div class="splash hidden" id="splash" aria-live="polite">
+  <div class="splash-glow"></div>
+  <div class="splash-logo huge">XY</div>
+  <div class="splash-bar pulse"><span></span></div>
+</div>
+
+<div class="bg-orbs">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
+
+<header class="topbar glass">
+  <div class="brand">
+    <div class="brand-text">
+      <span class="brand-label">PROJECT · FREE · EVOLVING</span>
+      <h1>XY Tools</h1>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="../index.html" data-nav="home">Home</a>
+    <a href="ferramentas.html" data-nav="ferramentas">Ferramentas</a>
+    <a href="integracoes.html" data-nav="integracoes">Integrações</a>
+    <a href="login.html" class="pill-link" data-nav="login">Login</a>
+  </nav>
+</header>
+
+<main class="login-shell">
+  <div class="login-card" data-reveal>
+    <div class="form-grid">
+      <h2>Entrada opcional</h2>
+      <p>Preencha se quiser registrar um acesso e retornar para a home. Não é obrigatório.</p>
+      <form id="login-form" class="form-grid">
+        <div class="field">
+          <label for="user">Usuário</label>
+          <input id="user" name="user" type="text" placeholder="meu.usuario" required>
+        </div>
+        <div class="field">
+          <label for="pass">Senha</label>
+          <input id="pass" name="pass" type="password" placeholder="••••••" required>
+        </div>
+        <p class="note">Fluxo simples apenas para voltar à página inicial.</p>
+        <button class="btn primary full" type="submit">Continuar</button>
+      </form>
+      <div class="login-mini">
+        <span>Atalhos rápidos:</span>
+        <div class="quick-links">
+          <a href="ferramentas.html">Ferramentas</a>
+          <a href="integracoes.html">Integrações</a>
+          <a href="automacoes.html">Automações</a>
+          <a href="fornecedores.html">Fornecedor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-cols">
+    <div>
+      <h3>XY Tools</h3>
+      <p>Suite moderna de ferramentas e playbooks.</p>
+    </div>
+    <div>
+      <h3>Páginas</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="ferramentas.html">Ferramentas</a></li>
+        <li><a href="integracoes.html">Integrações</a></li>
+        <li><a href="automacoes.html">Automações</a></li>
+        <li><a href="playbook.html">Playbook</a></li>
+        <li><a href="fornecedores.html">Fornecedores</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="copy">© 2025 XY Tools · experiência moderna.</p>
+<div class="footer-powered">Powered by <strong>XY Works</strong></div>
+</footer>
+
+<script src="../js/index.js"></script>
+</body>
+</html>
