@@ -1,30 +1,57 @@
-# XY Tools (SaaS Free, barato e escalável)
+# XY Tools — ferramentas grátis para vendedores Shopee
 
-Este projeto é um web-app estático (HTML/CSS/JS) com ferramentas para operação de seller (margem, etiquetas e análises).
-Ele funciona **sem backend** (tudo no navegador) e agora vem com **PWA + cache offline**.
+**XY Tools** é uma suíte **free** e **web-first** (roda direto no navegador) com foco em operação de marketplace:  
+**etiquetas Shopee (corte correto)**, **calculadora de margem** e **painel por XLSX**.
 
-## Como publicar de graça (recomendado)
-### Opção A — Cloudflare Pages (grátis)
-1. Crie um repositório (GitHub).
-2. Suba a pasta `xy-tools/` (este projeto).
-3. Conecte no Cloudflare Pages e faça deploy como **site estático** (sem build).
+- 🔗 **Demo (GitHub Pages):** https://iuxyog.github.io/xy-tools/
+- 🏷️ **Etiquetas Shopee:** https://iuxyog.github.io/xy-tools/pages/tools/etiquetas.html
 
-### Opção B — GitHub Pages (grátis)
-1. Suba o projeto para um repo.
-2. Ative Settings → Pages → branch `main` / root.
-3. Acesse a URL gerada.
+> Powered by **XY Works** — o XY Tools é o laboratório público. Existe um projeto maior em evolução: **XY Project**.
 
-> Importante: PWA (service worker) precisa de HTTPS (Cloudflare/GitHub Pages já entregam).
+---
 
-## Estrutura
-- `index.html` — home
-- `pages/` — páginas de conteúdo
-- `pages/tools/` — ferramentas
-- `css/` e `js/` — estilos e scripts
-- `manifest.json`, `sw.js` e `offline.html` — PWA
+## O que tem aqui
 
-## Próximo passo para virar SaaS (quando você quiser)
-- Auth real + banco (barato): Supabase (free tier) ou Firebase
-- Salvar presets/histórico por usuário
-- Relatório semanal por e-mail (Cloudflare Workers / Supabase Edge Functions)
+### ✅ Etiquetas Shopee (profissional)
+- **Entrada:** PDF da Shopee (A4 com 4 etiquetas por página)
+- **Corte:** **2×2 automático** (corta cada etiqueta)
+- **Saída:** **10×15 (térmica)** com 1 etiqueta por página  
+- Opção extra: **A4 (2 etiquetas por folha)** para impressão em papel
 
+### ✅ Calculadora de margem
+- Preço, taxas, custos extras e margem final
+
+### ✅ Painel XLSX
+- Upload de planilha e visão rápida (top SKUs, resumo)
+
+---
+
+## Como usar (30s)
+
+1. Abra a ferramenta de **Etiquetas Shopee**
+2. Selecione o **PDF baixado da Shopee**
+3. Escolha o preset **Shopee — A4 (4 por página) → 10×15**
+4. Clique em **Processar** → depois **Baixar PDF**
+
+---
+
+## Publicar no GitHub Pages
+
+1. Suba os arquivos no repositório (branch `main`)
+2. Vá em **Settings → Pages**
+3. Source: **Deploy from a branch**
+4. Branch: `main` / Folder: `/ (root)`
+5. Pronto: `https://SEU_USUARIO.github.io/xy-tools/`
+
+---
+
+## Roadmap (curto e realista)
+
+- Mais presets de etiqueta (modelos alternativos)
+- Ajuste fino por “milímetros” com pré-visualização
+- Fluxos e automações (XY Project)
+
+---
+
+## Licença
+Use como base do seu projeto. Se for abrir para terceiros, escolha uma licença (ex.: MIT).

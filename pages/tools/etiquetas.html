@@ -41,10 +41,10 @@
     </div>
   </div>
   <nav class="nav-links">
-    <a href="../../index.html" data-nav="home">Home</a>
-    <a href="../ferramentas.html" data-nav="ferramentas">Ferramentas</a>
-    <a href="../integracoes.html" data-nav="integracoes">Integrações</a>
-    <a href="../login.html" class="pill-link" data-nav="login">Login</a>
+    <a href="../../index.html#ferramentas">Ferramentas</a>
+    <a href="../../index.html#como-usar">Como usar</a>
+    <a href="../../index.html#project">XY Project</a>
+    <a href="../../index.html" class="pill-link">Home</a>
   </nav>
 </header>
 
@@ -64,8 +64,9 @@
         <div class="campo">
           <label for="preset">Preset</label>
           <select id="preset">
-            <option value="shopee_a6" selected>Shopee — 10x15 (A6 / etiqueta térmica)</option>
-            <option value="shopee_a4_2up">Shopee — A4 (2 etiquetas por folha)</option>
+            <option value="shopee_a4_4up" selected>Shopee — A4 (4 por página) → 10×15</option>
+            <option value="shopee_a6">Shopee — 10×15 (A6 / etiqueta térmica)</option>
+            <option value="shopee_a4_2up">Shopee — A4 (2 por folha)</option>
             <option value="custom">Avançado — Custom</option>
           </select>
           <small class="hint">Escolha como você imprime hoje. O preset já ajusta recorte e saída.</small>
@@ -93,8 +94,8 @@
         </div>
 
         <div class="actions-row">
-          <button class="btn primary" id="btnProcess" type="button">Processar</button>
-          <button class="btn" id="btnSave" type="button" disabled>Baixar PDF</button>
+          <button class="btn primary" id="btnProcess" type="button"><span class="btn-label">Processar</span><span class="btn-loading" hidden>Processando…</span></button>
+          <button class="btn" id="btnSave" type="button" disabled><span class="btn-label">Baixar PDF</span><span class="btn-loading" hidden>Gerando…</span></button>
           <span class="status" id="status">Aguardando arquivo</span>
         </div>
       </div>

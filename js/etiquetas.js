@@ -15,13 +15,21 @@ const posXInput = document.getElementById("posX");
 const posYInput = document.getElementById("posY");
 const previewEl = document.getElementById("preview");
 const statusEl = document.getElementById("status");
+const statusPill = document.getElementById("status-pill");
 const btnProcess = document.getElementById("btnProcess");
 const btnSave = document.getElementById("btnSave");
 const showBrandInput = document.getElementById("showBrand");
 
 const presets = {
-  shopee_a6: { name: "Shopee A6", cols: 1, rows: 1, padX: 0, padY: 0, output: "a6", pack: "single" },
-  shopee_a4_2up: { name: "Shopee A4 2-up", cols: 1, rows: 1, padX: 0, padY: 0, output: "a4", pack: "a4_2up" },
+  // Shopee normalmente gera A4 com 4 etiquetas por página (2x2). Esse preset recorta certo e exporta 10×15.
+  shopee_a4_4up: { name: "Shopee — A4 (4 por página) → 10×15", cols: 2, rows: 2, padX: 0, padY: 0, output: "a6", pack: "single" },
+
+  // Para PDFs que já estão em 10×15 (1 etiqueta por página)
+  shopee_a6: { name: "Shopee — 10×15 (A6 / etiqueta térmica)", cols: 1, rows: 1, padX: 0, padY: 0, output: "a6", pack: "single" },
+
+  // Para imprimir em folha A4 economizando papel (2 etiquetas por folha)
+  shopee_a4_2up: { name: "Shopee — A4 (2 por folha)", cols: 1, rows: 1, padX: 0, padY: 0, output: "a4", pack: "a4_2up" },
+
   custom: { name: "Custom", cols: 1, rows: 1, padX: 0, padY: 0, output: "a6", pack: "single" }
 };
 
@@ -31,9 +39,19 @@ const state = {
   pack: "single"
 };
 
+function setButtonLoading(btn, isLoading) {
+  if (!btn) return;
+  btn.disabled = !!isLoading;
+  const label = btn.querySelector(".btn-label");
+  const loading = btn.querySelector(".btn-loading");
+  if (label) label.hidden = !!isLoading;
+  if (loading) loading.hidden = !isLoading;
+}
+
 function setStatus(text) {
   if (!statusEl) return;
   statusEl.textContent = text;
+  if (statusPill) statusPill.textContent = text;
 }
 
 function readNumber(el, fallback = 0) {
@@ -58,10 +76,18 @@ function applyPreset(key) {
   setStatus(`Preset aplicado: ${cfg.name || key}`);
 }
 
-(file) {
+async function loadPdfFromFile(file) {
   const buffer = await file.arrayBuffer();
   return pdfjsLib.getDocument({ data: buffer }).promise;
 }
+
+// Some browsers/styles may override the native [hidden] attribute.
+// Ensure it always hides elements.
+(() => {
+  const style = document.createElement('style');
+  style.textContent = '[hidden]{display:none!important}';
+  document.head.appendChild(style);
+})();
 
 function overlayMensagem(ctx, w, h) {
   const text = (msgTextInput.value || "").trim();
@@ -145,136 +171,162 @@ function baixarPdfFinal() {
     return;
   }
 
-  const out = (outputFormatSelect?.value || "a6").toLowerCase();
-  const { jsPDF } = window.jspdf;
+  setButtonLoading(btnSave, true);
+  setStatus("Gerando PDF…");
 
-  const doc = new jsPDF({
-    orientation: "portrait",
-    unit: "mm",
-    format: out === "a4" ? "a4" : [100, 150] // 10x15
-  });
+  try {
+    const out = (outputFormatSelect?.value || "a6").toLowerCase();
+    const { jsPDF } = window.jspdf;
 
-  const placeImage = (src, x, y, w, h) => {
-    doc.addImage(src, "PNG", x, y, w, h, undefined, "FAST");
-  };
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: out === "a4" ? "a4" : [100, 150] // 10x15
+    });
 
-  const maybeBrand = (pageWidth, pageHeight) => {
-    const allow = (out === "a4") && !!showBrandInput?.checked;
-    if (!allow) return;
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.setTextColor(120);
-    doc.text("XY Tools · Powered by XY Works", pageWidth / 2, pageHeight - 4, { align: "center" });
-    doc.setTextColor(0);
-  };
+    const placeImage = (src, x, y, w, h) => {
+      doc.addImage(src, "PNG", x, y, w, h, undefined, "FAST");
+    };
 
-  if (out === "a4" && state.pack === "a4_2up") {
-    // A4 com 2 etiquetas por folha (topo + base), ideal para Shopee.
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
+    const maybeBrand = (pageWidth, pageHeight) => {
+      const allow = (out === "a4") && !!showBrandInput?.checked;
+      if (!allow) return;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(8);
+      doc.setTextColor(120);
+      doc.text("XY Tools · Powered by XY Works", pageWidth / 2, pageHeight - 4, { align: "center" });
+      doc.setTextColor(0);
+    };
 
-    const margin = 3;   // mm
-    const gap = 1;      // mm
-    const baseW = 100;  // mm
-    const baseH = 150;  // mm
-
-    const scale = Math.min(
-      (pageWidth - margin * 2) / baseW,
-      (pageHeight - margin * 2 - gap) / (baseH * 2)
-    );
-
-    const w = baseW * scale;
-    const h = baseH * scale;
-    const x = (pageWidth - w) / 2;
-    const y1 = margin;
-    const y2 = margin + h + gap;
-
-    for (let i = 0; i < state.etiquetas.length; i += 2) {
-      if (i > 0) doc.addPage();
-
-      placeImage(state.etiquetas[i], x, y1, w, h);
-      if (state.etiquetas[i + 1]) placeImage(state.etiquetas[i + 1], x, y2, w, h);
-
-      // linha de corte bem discreta
-      doc.setDrawColor(210);
-      doc.setLineWidth(0.1);
-      doc.line(margin, y2 - (gap / 2), pageWidth - margin, y2 - (gap / 2));
-
-      maybeBrand(pageWidth, pageHeight);
-    }
-  } else {
-    // Saída padrão: 1 etiqueta por página (A6 10x15 ou A4 centralizada)
-    state.etiquetas.forEach((src, idx) => {
-      if (idx > 0) doc.addPage();
-
+    if (out === "a4" && state.pack === "a4_2up") {
+      // A4 com 2 etiquetas por folha (topo + base)
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
 
-      if (out === "a4") {
-        // centraliza em A4 com boa margem (impressão em folha)
-        const margin = 10;
-        const baseW = 100;
-        const baseH = 150;
-        const scale = Math.min((pageWidth - margin * 2) / baseW, (pageHeight - margin * 2) / baseH);
-        const w = baseW * scale;
-        const h = baseH * scale;
-        const x = (pageWidth - w) / 2;
-        const y = (pageHeight - h) / 2;
-        placeImage(src, x, y, w, h);
+      const margin = 3;   // mm
+      const gap = 1;      // mm
+      const baseW = 100;  // mm
+      const baseH = 150;  // mm
+
+      const scale = Math.min(
+        (pageWidth - margin * 2) / baseW,
+        (pageHeight - margin * 2 - gap) / (baseH * 2)
+      );
+
+      const w = baseW * scale;
+      const h = baseH * scale;
+      const x = (pageWidth - w) / 2;
+      const y1 = margin;
+      const y2 = margin + h + gap;
+
+      for (let i = 0; i < state.etiquetas.length; i += 2) {
+        if (i > 0) doc.addPage();
+        placeImage(state.etiquetas[i], x, y1, w, h);
+        if (state.etiquetas[i + 1]) placeImage(state.etiquetas[i + 1], x, y2, w, h);
+
+        // linha de corte discreta
+        doc.setDrawColor(210);
+        doc.setLineWidth(0.1);
+        doc.line(margin, y2 - (gap / 2), pageWidth - margin, y2 - (gap / 2));
         maybeBrand(pageWidth, pageHeight);
-      } else {
-        // A6 10x15: ocupa quase toda a etiqueta (ideal térmica)
-        const margin = 2;
-        const w = pageWidth - margin * 2;
-        const h = pageHeight - margin * 2;
-        placeImage(src, margin, margin, w, h);
       }
-    });
-  }
+    } else {
+      // 1 etiqueta por página (A6 10x15 ou A4 centralizada)
+      state.etiquetas.forEach((src, idx) => {
+        if (idx > 0) doc.addPage();
 
-  doc.save("xy-tools-etiquetas-shopee.pdf");
-}
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
 
-async function processar() {
-  if (!pdfFileInput.files.length) {
-    alert("Selecione um PDF de etiquetas primeiro.");
-    return;
-  }
-  setStatus("Processando PDF...", "muted");
-  btnProcess.disabled = true;
-  state.etiquetas = [];
-  renderPreview();
+        if (out === "a4") {
+          const margin = 10;
+          const baseW = 100;
+          const baseH = 150;
+          const scale = Math.min(
+            (pageWidth - margin * 2) / baseW,
+            (pageHeight - margin * 2) / baseH
+          );
+          const w = baseW * scale;
+          const h = baseH * scale;
+          const x = (pageWidth - w) / 2;
+          const y = (pageHeight - h) / 2;
+          placeImage(src, x, y, w, h);
+          maybeBrand(pageWidth, pageHeight);
+        } else {
+          const margin = 2;
+          const w = pageWidth - margin * 2;
+          const h = pageHeight - margin * 2;
+          placeImage(src, margin, margin, w, h);
+        }
+      });
+    }
 
-  try {
-    state.pdf = await carregarPdf(pdfFileInput.files[0]);
-    state.etiquetas = await extrairEtiquetas(state.pdf);
-    renderPreview();
-    setStatus(`${state.etiquetas.length} etiquetas prontas`, "success");
+    doc.save("etiquetas-shopee.pdf");
   } catch (err) {
     console.error(err);
-    alert(err.message || "Erro ao processar PDF. Verifique se o arquivo e valido.");
-    setStatus("Erro ao processar", "warning");
+    alert("Erro ao gerar PDF. Tente outro arquivo ou ajuste o preset.");
+    setStatus("Erro ao gerar PDF");
   } finally {
-    btnProcess.disabled = false;
+    setButtonLoading(btnSave, false);
+    if (state.etiquetas.length) setStatus(`PDF pronto — ${state.etiquetas.length} etiquetas`);
   }
 }
 
-function wireUI() {
-  if (presetSelect) {
-    presetSelect.addEventListener("change", (e) => applyPreset(e.target.value));
-  }
-  if (pdfFileInput) {
-    pdfFileInput.addEventListener("change", () => setStatus("Arquivo carregado. Clique em Processar."));
-  }
-  if (btnProcess) {
-    btnProcess.addEventListener("click", processar);
-  }
-  if (btnSave) {
-    btnSave.addEventListener("click", baixarPdfFinal);
-  }
-  applyPreset(presetSelect?.value || "shopee_a6");
+// --- Wire UI ---
+
+function resetState() {
+  state.pdf = null;
+  state.etiquetas = [];
+  if (previewEl) previewEl.innerHTML = "";
+  btnSave.disabled = true;
+  if (btnProcess) btnProcess.disabled = true;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  wireUI();
+// Initial UI
+resetState();
+applyPreset(presetSelect?.value || "shopee_a4_4up");
+setStatus("Aguardando arquivo");
+
+presetSelect?.addEventListener("change", (e) => {
+  applyPreset(e.target.value);
+  resetState();
+  // keep process enabled only when file selected
+  btnProcess.disabled = !pdfFileInput?.files?.length;
 });
+
+pdfFileInput?.addEventListener("change", async () => {
+  resetState();
+  const file = pdfFileInput.files?.[0];
+  if (!file) {
+    btnProcess.disabled = true;
+    setStatus("Aguardando arquivo");
+    return;
+  }
+  btnProcess.disabled = false;
+  setStatus(`Arquivo pronto: ${file.name}`);
+});
+
+btnProcess?.addEventListener("click", async () => {
+  const file = pdfFileInput?.files?.[0];
+  if (!file) {
+    alert("Anexe o PDF da Shopee primeiro.");
+    return;
+  }
+  setButtonLoading(btnProcess, true);
+  setStatus("Processando…");
+  try {
+    state.pdf = await loadPdfFromFile(file);
+    state.etiquetas = await extrairEtiquetas(state.pdf);
+    renderPreview();
+    btnSave.disabled = state.etiquetas.length === 0;
+    setStatus(`${state.etiquetas.length} etiquetas prontas`);
+  } catch (err) {
+    console.error(err);
+    alert("Falha ao processar. Verifique se o PDF é o da Shopee e tente novamente.");
+    setStatus("Falha ao processar");
+  } finally {
+    setButtonLoading(btnProcess, false);
+  }
+});
+
+btnSave?.addEventListener("click", baixarPdfFinal);

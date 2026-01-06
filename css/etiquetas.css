@@ -316,3 +316,38 @@ a:hover{ color: var(--text); }
 .check{ display:flex; gap:10px; align-items:center; color: var(--text-soft); }
 .check input{ accent-color: var(--gold-main, #D4AF37); }
 .campo-inline{ align-self:center; }
+
+
+/* UX: botao com destaque + loading */
+#btnProcess {
+  background: linear-gradient(135deg, #F5C15B, #D4AF37) !important;
+  color: #0B1220 !important;
+  border: none !important;
+}
+#btnProcess:hover { filter: brightness(1.05); }
+
+#btnSave {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.18);
+  color: var(--text-main);
+}
+#btnSave:hover { border-color: rgba(255,255,255,0.28); }
+
+.btn-loading{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+}
+.btn-loading::after{
+  content:"";
+  width:14px;height:14px;
+  border:2px solid rgba(11,18,32,0.9);
+  border-top-color: transparent;
+  border-radius:50%;
+  animation:xyspin .8s linear infinite;
+}
+#btnSave .btn-loading::after{
+  border-color: rgba(249,250,251,0.9);
+  border-top-color: transparent;
+}
+@keyframes xyspin{ to{ transform: rotate(360deg);} }
