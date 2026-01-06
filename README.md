@@ -35,16 +35,6 @@
 
 ---
 
-## Publicar no GitHub Pages
-
-1. Suba os arquivos no repositório (branch `main`)
-2. Vá em **Settings → Pages**
-3. Source: **Deploy from a branch**
-4. Branch: `main` / Folder: `/ (root)`
-5. Pronto: `https://SEU_USUARIO.github.io/xy-tools/`
-
----
-
 ## Roadmap (curto e realista)
 
 - Mais presets de etiqueta (modelos alternativos)
@@ -52,6 +42,3 @@
 - Fluxos e automações (XY Project)
 
 ---
-
-## Licença
-Use como base do seu projeto. Se for abrir para terceiros, escolha uma licença (ex.: MIT).
